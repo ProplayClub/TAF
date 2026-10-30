@@ -1,4 +1,4 @@
-const CACHE = 'taf-treinos-v3';
+const CACHE = 'taf-treinos-v4';
 const ASSETS = [
   './',
   './index.html',
