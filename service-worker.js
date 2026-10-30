@@ -1,10 +1,10 @@
-const CACHE = 'taf-treinos-v1';
+const CACHE = 'taf-treinos-v3';
 const ASSETS = [
   './',
   './index.html',
   './manifest.json',
-  './icon-192.png',
-  './icon-512.png'
+  './icon-192-pp.png',
+  './icon-512-pp.png'
 ];
 
 self.addEventListener('install', event => {

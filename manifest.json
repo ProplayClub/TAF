@@ -9,13 +9,13 @@
   "description": "Treinos TAF A, B, C, D e sábado.",
   "icons": [
     {
-      "src": "./icon-192.png",
+      "src": "./icon-192-pp.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "./icon-512.png",
+      "src": "./icon-512-pp.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"

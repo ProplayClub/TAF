@@ -10,8 +10,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="TAF">
 <link rel="manifest" href="./manifest.json">
-<link rel="icon" href="./icon-192.png" type="image/png">
-<link rel="apple-touch-icon" href="./icon-192.png">
+<link rel="icon" href="./icon-192-pp.png" type="image/png">
+<link rel="apple-touch-icon" href="./icon-192-pp.png">
 
 <style>
 :root{
@@ -130,6 +130,22 @@ h1{margin:0 0 12px;font-size:1.8rem;line-height:1}
   color:#a7f1c5
 }
 .note{margin:0 14px 14px;color:var(--muted);font-size:.8rem}
+.cardioCard{
+  position:relative;
+  background:linear-gradient(180deg,#151515,#0b0b0b);
+  border:1px solid #4a430d;
+  border-radius:16px;
+  margin:22px 0 10px;
+  padding:17px 15px 15px;
+  overflow:hidden
+}
+.cardioCard::before{
+  content:'';position:absolute;left:0;right:0;top:0;height:6px;
+  background:linear-gradient(90deg,var(--yellow),var(--yellow2))
+}
+.cardioTitle{font-size:1rem;font-weight:950;color:var(--yellow);letter-spacing:.05em;margin-bottom:10px}
+.cardioLine{font-size:.9rem;font-weight:800;line-height:1.55;color:var(--text)}
+.cardioLine strong{color:var(--yellow2)}
 .actions{display:flex;gap:8px;margin-top:14px}
 .action{
   flex:1;
@@ -193,11 +209,17 @@ const workouts = {
     label:'TREINO A',
     exercises:[
       {id:'barra',icon:'',name:'BARRA FIXA LIVRE SUPINADA',target:'2×1',load:null,unit:'',sets:[1,1],rest:210,note:'INTERVALO: 3:30'},
-      {id:'graviton',icon:'',name:'GRÁVITON SUPINADO',target:'4×4',load:45,unit:'KG',sets:[4,4,4,4],rest:210,note:'INTERVALO: 3:30'},
+      {id:'graviton_a_40',icon:'',name:'GRÁVITON SUPINADO',target:'4×3',load:40,unit:'KG',sets:[3,3,3,3],rest:210,note:'INTERVALO: 3:30'},
       {id:'puxada',icon:'',name:'PUXADA FRONTAL SUPINADA',target:'3×8',load:40,unit:'KG',sets:[8,8,8],rest:120,note:'INTERVALO: 2:00'},
       {id:'remada',icon:'',name:'REMADA ARTICULADA NEUTRA',target:'3×8',load:70,unit:'KG',sets:[8,8,8],rest:120,note:'INTERVALO: 2:00'},
       {id:'martelo',icon:'',name:'ROSCA MARTELO C/ HALTERES',target:'3×10',load:12,unit:'KG',sets:[10,10,10],rest:120,note:'INTERVALO: 2:00'}
-    ]
+    ],
+    cardio:{
+      title:'CARDIO — FINAL DO TREINO',
+      lines:[
+        '40–60 MIN CAMINHADA A <strong>5,7 KM/H</strong>'
+      ]
+    }
   },
   B:{
     label:'TREINO B',
@@ -205,8 +227,17 @@ const workouts = {
       {id:'hammer',icon:'',name:'SUPINO HAMMER ARTICULADO',target:'3×10',load:40,unit:'KG',sets:[10,10,10],rest:120,note:'INTERVALO: 2:00'},
       {id:'inclinado',icon:'',name:'SUPINO INCLINADO ARTICULADO',target:'3×10',load:40,unit:'KG',sets:[10,10,10],rest:120,note:'INTERVALO: 2:00'},
       {id:'triceps',icon:'',name:'TRÍCEPS PULLEY C/ BARRA',target:'3×10',load:50,unit:'KG',sets:[10,10,10],rest:120,note:'INTERVALO: 2:00'},
-      {id:'abd',icon:'',name:'ABD SUPRA CROSS EM PÉ',target:'3×15',load:70,unit:'KG',sets:[15,15,15],rest:120,note:'INTERVALO: 2:00'}
-    ]
+      {id:'abd',icon:'',name:'ABD SUPRA CROSS EM PÉ',target:'3×15',load:70,unit:'KG',sets:[15,15,15],rest:120,note:'INTERVALO: 2:00'},
+      {id:'pallof',icon:'',name:'PALLOF PRESS NO CROSSOVER',target:'2×10 POR LADO',load:null,unit:'',sets:[10,10],rest:60,note:'INTERVALO: 1:00'}
+    ],
+    cardio:{
+      title:'CARDIO — FINAL DO TREINO',
+      lines:[
+        'AQUECIMENTO <strong>8 MIN A 5,7 KM/H</strong>',
+        'SÉRIES <strong>3×5 MIN A 9 KM/H</strong>',
+        'RECUPERAÇÃO <strong>3 MIN CAMINHANDO A 5,5 KM/H</strong>'
+      ]
+    }
   },
   C:{
     label:'TREINO C',
@@ -214,9 +245,15 @@ const workouts = {
       {id:'barra',icon:'',name:'BARRA FIXA LIVRE SUPINADA',target:'2×1',load:null,unit:'',sets:[1,1],rest:210,note:'INTERVALO: 3:30'},
       {id:'graviton',icon:'',name:'GRÁVITON SUPINADO',target:'4×6',load:50,unit:'KG',sets:[6,6,6,6],rest:210,note:'INTERVALO: 3:30'},
       {id:'puxada',icon:'',name:'PUXADA FRONTAL SUPINADA',target:'3×8',load:40,unit:'KG',sets:[8,8,8],rest:120,note:'INTERVALO: 2:00'},
-      {id:'desenv',icon:'',name:'DESENVOLVIMENTO ARTICULADO NEUTRO',target:'3×10',load:50,unit:'KG',sets:[10,10,10],rest:120,note:'INTERVALO: 2:00'},
+      {id:'desenv_halteres',icon:'',name:'DESENVOLVIMENTO COM HALTERES EM PEGADA NEUTRA',target:'3×10',load:10,unit:'KG',sets:[10,10,10],rest:120,note:'INTERVALO: 2:00'},
       {id:'crucifixo',icon:'',name:'CRUCIFIXO INVERSO CROSS UNILATERAL',target:'3×12',load:15,unit:'KG',sets:[12,12,12],rest:120,note:'INTERVALO: 2:00'}
-    ]
+    ],
+    cardio:{
+      title:'CARDIO — FINAL DO TREINO',
+      lines:[
+        '40–60 MIN CAMINHADA A <strong>5,7 KM/H</strong>'
+      ]
+    }
   },
   D:{
     label:'TREINO D',
@@ -225,7 +262,14 @@ const workouts = {
       {id:'flexora',icon:'',name:'CADEIRA FLEXORA',target:'3×12',load:50,unit:'KG',sets:[12,12,12],rest:120,note:'INTERVALO: 2:00'},
       {id:'afundo',icon:'',name:'AFUNDO C/ HALTERES',target:'3×10 POR PERNA',load:12,unit:'KG',sets:[10,10,10],rest:120,note:'INTERVALO: 2:00'},
       {id:'pant',icon:'',name:'PANTURRILHA SENTADO MÁQUINA',target:'3×15',load:20,unit:'KG',sets:[15,15,15],rest:120,note:'INTERVALO: 2:00'}
-    ]
+    ],
+    cardio:{
+      title:'CARDIO — FINAL DO TREINO',
+      lines:[
+        'AQUECIMENTO <strong>8 MIN A 5,7 KM/H</strong>',
+        'SÉRIE <strong>O MÁXIMO A 8 KM/H</strong>'
+      ]
+    }
   },
   S:{
     label:'SÁBADO',
@@ -267,6 +311,7 @@ function render(){
     </div>
     <div class="sectionTitle">EXERCÍCIOS</div>
     <div id="exerciseHost"></div>
+    <div id="cardioHost"></div>
     <div class="actions">
       <button class="action" onclick="saveState(current)">SALVAR</button>
       <button class="action alt" onclick="resetWorkout()">ZERAR ${w.label}</button>
@@ -301,6 +346,15 @@ function render(){
     `;
     host.appendChild(card);
   });
+  const cardioHost=document.getElementById('cardioHost');
+  if(w.cardio){
+    cardioHost.innerHTML=`
+      <div class="cardioCard">
+        <div class="cardioTitle">${w.cardio.title}</div>
+        ${w.cardio.lines.map(line=>`<div class="cardioLine">${line}</div>`).join('')}
+      </div>
+    `;
+  }
   loadState(current);
   updateProgress();
 }
