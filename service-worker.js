@@ -1,10 +1,11 @@
-const CACHE = 'taf-treinos-v6-1511-nomes';
+const CACHE = 'taf-treinos-v7-1511-pprs-topo';
 const ASSETS = [
   './',
   './index.html',
   './manifest.json',
   './icon-192-pp.png',
-  './icon-512-pp.png'
+  './icon-512-pp.png',
+  './logo-pprs.png'
 ];
 
 self.addEventListener('install', event => {
